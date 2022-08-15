@@ -1,0 +1,42 @@
+<!-- <cu-custom bgColor="bg-gradual-orange" isBack="{{false}}">
+	<view slot="content">贵州师范大学跳蚤市场</view>
+</cu-custom> -->
+
+<view bindtap="cancellogin" class="hd" style="transform:rotateZ({{angle}}deg);">
+	<open-data class='logo' type="userAvatarUrl"></open-data>
+</view>
+
+<view class="padding">
+	<view class="box text-center">
+		<button class="cu-btn bg-gradual-black bg-black shadow round lg" open-type="getUserInfo" style="bottom:-800rpx;width:300rpx" bindgetuserinfo="onEnter">
+			登录</button>
+	</view>
+</view>
+
+<view class="padding">
+	<view class="box text-center">
+		<button class="cu-btn bg-gradual-black bg-black shadow round lg" open-type="getUserInfo" style="bottom:-800rpx;width:300rpx" bindgetuserinfo="onRegister">
+			注册</button>
+	</view>
+</view>
+
+
+
+
+
+
+<view class="cu-modal bottom-modal {{showLoginPopup?'show':''}}">
+	<view class="cu-dialog" catchtap>
+		<view class="cu-bar bg-white">
+			<view class="action text-blue"></view>
+			<view class="action text-green" catch:tap="onCancelLoginPopup">取消</view>
+		</view>
+
+		<view class="padding">
+			<button class="cu-btn block bg-green margin-tb-sm lg" open-type="getUserInfo" bindgetuserinfo="onAuth">获取微信授权信息</button>
+		</view>
+	</view>
+</view>
+
+<!-- 轻提示 -->
+<van-toast id="van-toast" />

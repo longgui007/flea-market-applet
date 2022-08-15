@@ -1,0 +1,93 @@
+<cu-custom bgColor="bg-yellow" isBack="{{false}}">
+	<!-- <view slot="backText" bind:tap="onNavigateBack">返回登录</view> -->
+	<view slot="content">贵州师范大学跳蚤市场</view>
+</cu-custom>
+
+
+<view class="cu-bar bg-white search">
+	<view class="action" bindtap="onShowLoginPopup">
+		<text class="cuIcon-locationfill text-orange"></text>
+		<text>{{universityName}}</text>
+	</view>
+	<view class="search-form round">
+		<text class="cuIcon-search"></text>
+		<input type="text" placeholder="搜索商品" confirm-type="search" bindinput="onSearchInput" bindconfirm="onSearchCommodity"></input>
+	</view>
+</view>
+
+
+<swiper class="card-swiper square-dot" indicator-dots="true" circular="true" autoplay="true" interval="3000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
+	<swiper-item wx:for="{{swiperList}}" wx:key="_id" class="{{cardCur==index?'cur':''}}">
+		<view class="swiper-item shadow">
+			<image src="{{item.url}}" mode="aspectFill"></image>
+		</view>
+	</swiper-item>
+</swiper>
+
+  <view class="cu-list grid col-4 margin-sm radius">
+    <view class="cu-item" wx:for="{{categoryInfo}}" wx:key="key" wx:if="{{index<8}}">
+      <view class="cuIcon-{{item.icon}} text-{{item.color}}" bindtap="tabSelect" data-id="{{index}}">
+        <view class="cu-tag badge" wx:if="{{currCategory==item.name}}">
+          <block>当前</block>
+        </view>
+      </view>
+      <text bindtap="tabSelect" data-id="{{index}}">{{item.name}}</text>
+    </view>
+  </view>
+
+
+<!-- <scroll-view scroll-x class="bg-gradual-orange nav text-center">
+	<view class="cu-item {{index==TabCur?'text-white cur':''}}" wx:for="{{categoryInfo}}" wx:key="_id" bindtap="tabSelect" data-id="{{index}}">
+		<text>{{item.name}}</text>
+	</view>
+</scroll-view> -->
+
+<view wx:if="{{commodityList.length==0}}">
+<van-empty description="暂时没有商品哦，快去发布吧" />
+</view>
+
+
+<view wx:for="{{commodityList}}" wx:key="_id">
+	<van-card custom-class="commodity-card shadow-warp" thumb-mode="aspectFill" desc-class="text-cut" title-class="text-cut" num="{{item.number}}" price="{{item.price_now}}" origin-price="{{item.price_origin}}" desc="{{item.content}}" title="{{item.title}}" thumb="{{item.thumbnail_url[0]}}" data-id="{{item._id}}" bind:tap="onEnterCommodityDetail">
+		<view slot="tags">
+			<view class="cu-tag bg-{{item.status==0?'green':(item.status==1?'red':'grey')}} round">{{item.status==0?'正在出售':(item.status==1?'交易中':'已售罄')}}</view>
+		</view>
+	</van-card>
+</view>
+
+<view wx:if="{{commodityList.length!=0}}">
+<view class="cu-load margin-top {{isLoading?'loading':'over'}}"></view>
+</view>
+<view class="hline"></view>
+
+
+
+<view class="cu-modal bottom-modal {{showLoginPopup?'show':''}}">
+	<view class="cu-dialog" catchtap>
+		<view class="cu-bar bg-white">
+			<view class="action text-blue"></view>
+			<view class="action text-green" catch:tap="onCancelLoginPopup">取消</view>
+		</view>
+		<view class="padding">
+			<button class="cu-btn block bg-green margin-tb-sm lg" open-type="getUserInfo" bindgetuserinfo="onAuth">注册后可进行更多操作</button>
+		</view>
+	</view>
+</view>
+
+<view class="cu-bar tabbar bg-white bar-wrapper">
+	<view class="action {{pageIndex==0?'text-orange':'text-grey'}}" bind:tap="onCommodityListTab">
+		<view class="cuIcon-homefill"></view> 首页
+	</view>
+
+	<view class="action text-gray add-action" bind:tap="onCommodityReleaseTab">
+		<button class="cu-btn cuIcon-add bg-yellow shadow"></button>
+		发布
+	</view>
+
+	<view class="action {{pageIndex==1?'text-orange':'text-grey'}}" bind:tap="onHomeTab">
+		<view class="cuIcon-my">
+			<!-- <view class="cu-tag badge"></view> -->
+		</view>
+		我的
+	</view>
+</view>

@@ -1,0 +1,104 @@
+<scroll-view scroll-y class="scrollPage">
+	<view class="UCenter-bg">
+		<image src="{{userAvatarUrl}}" class="png round" mode="widthFix" bindtap="onEnterHomeUserInfo"></image>
+		<view class="text-xl margin-top text-black" bindtap="onEnterHomeUserInfo">{{userName}}
+		</view>
+		<view class="margin-top-sm" bindtap="onEnterHomeUserInfo">
+			<text class="text-black">{{universityName}}</text>
+		</view>
+		<image src="https://636c-cloud1-2g294lom8a1e168d-1307914651.tcb.qcloud.la/bg-image/wave.gif?sign=dbd04cfacf898248e78cfc6a235d99d7&t=1646558100" mode="scaleToFill" class="gif-wave"></image>
+	</view>
+	<view class="padding flex text-center text-grey bg-white shadow-warp">
+		<view class="flex flex-sub flex-direction solid-right" bindtap="onEnterHomeTransaction">
+			<view class="text-xxl text-blue">{{totalTransaction}}</view>
+			<view class="margin-top-sm">
+				总交易数</view>
+		</view>
+		<view class="flex flex-sub flex-direction" bindtap="onEnterHomeRelease">
+			<view class="text-xxl text-green">{{totalRelease}}</view>
+			<view class="margin-top-sm">
+				总发布商品数</view>
+		</view>
+	</view>
+	<view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
+		<view class="cu-item arrow" bindtap="onAuthReceiveMsg">
+			<view class="content" hover-class="none">
+				<text class="cuIcon-forwardfill text-green"></text>
+				<text class="text-grey">接受新交易推送一次</text>
+			</view>
+		</view>
+		<view class="cu-item arrow" bindtap="onEnterHomeUserInfo">
+			<view class="content" hover-class="none">
+				<text class="cuIcon-peoplefill text-orange"></text>
+				<text class="text-grey">我的信息</text>
+			</view>
+		</view>
+		<view class="cu-item arrow" bindtap="onEnterHomeTransaction">
+			<view class="content" hover-class="none">
+				<text class="cuIcon-rechargefill text-red"></text>
+				<text class="text-grey">我的交易</text>
+			</view>
+		</view>
+		<view class="cu-item arrow" bindtap="onEnterHomeRelease">
+			<view class="content" hover-class="none">
+				<text class="cuIcon-formfill text-blue"></text>
+				<text class="text-grey">我发布的商品</text>
+			</view>
+		</view>
+		<view class="cu-item arrow" bindtap="copyLink">
+			<view class="content" data-link="https://github.com/2horse9sun/University_O2O">
+				<text class="cuIcon-github text-grey"></text>
+				<text class="text-grey">复制此小程序的GitHub地址</text>
+			</view>
+		</view>
+		<view class="cu-item arrow">
+			<button class="cu-btn content" open-type="feedback">
+				<text class="cuIcon-writefill text-cyan"></text>
+				<text class="text-grey">意见反馈</text>
+			</button>
+		</view>
+		<view class="cu-item arrow" bindtap="onEnterHomeAbout">
+			<view class="content" hover-class="none">
+				<text class="cuIcon-infofill text-orange"></text>
+				<text class="text-grey">关于此小程序</text>
+			</view>
+		</view>
+
+	</view>
+	<view class="cu-tabbar-height"></view>
+</scroll-view>
+
+
+<view class="hline"></view>
+
+<view class="cu-bar tabbar bg-white bar-wrapper">
+	<view class="action {{pageIndex==0?'text-orange':'text-grey'}}" bind:tap="onCommodityListTab">
+		<view class="cuIcon-homefill"></view> 首页
+	</view>
+
+	<view class="action text-gray add-action" bind:tap="onCommodityReleaseTab">
+		<button class="cu-btn cuIcon-add bg-yellow shadow"></button>
+		发布
+	</view>
+
+	<view class="action {{pageIndex==1?'text-orange':'text-grey'}}" bind:tap="onHomeTab">
+		<view class="cuIcon-my">
+			<!-- <view class="cu-tag badge"></view> -->
+		</view>
+		我的
+	</view>
+</view>
+
+<view class="cu-modal bottom-modal {{showLoginPopup?'show':''}}">
+	<view class="cu-dialog" catchtap>
+		<view class="cu-bar bg-white">
+			<view class="action text-blue"></view>
+			<view class="action text-green" catch:tap="onCancelLoginPopup">取消</view>
+		</view>
+		<view class="padding">
+			<button class="cu-btn block bg-green margin-tb-sm lg" open-type="getUserInfo" bindgetuserinfo="onAuth">注册后可进行更多操作</button>
+		</view>
+	</view>
+</view>
+
+<van-dialog id="van-dialog" />

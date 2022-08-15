@@ -1,0 +1,16 @@
+<cu-custom bgColor="bg-yellow" isBack="{{true}}">
+	<view slot="backText" catch:tap="onNavigateBack">返回</view>
+	<view slot="content">关于</view>
+</cu-custom>
+
+
+<view class='margin-xl bg-white padding-xl radius shadow-lg'>
+	<view class='text-center margin-bottom text-lg  text-grey'>贵州师范大学跳蚤市场</view>
+	<view class='text-content'>
+		<view class='margin-top-sm'>该项目属于2022年作者的毕业设计。</view>
+		<view class='margin-top-sm'>是贵州师范大学的闲置物品交易平台，线上发布信息，获取双方联系方式，线下交易，不涉及在线支付功能，线下一切风险由学生本人承担，作者只是提供这样一个平台丰富同学们业余生活，体验营销的快乐！</view>
+		<view class='margin-top-sm'>有问题联系作者邮箱：longgui0324@163.com</view>
+		<view class='margin-top-sm'>还会持续更新！</view>
+    <view class='margin-top-sm'>版本号：1.1.1</view>
+	</view>
+</view>
